@@ -38,6 +38,14 @@ bool Player::checkHandForBook(Card &c1, Card &c2){
 	return pair;
 }
 
+Card Player::chooseCardFromHand() const{
+	int size = myHand.size();
+	int targ = rand() % size;
+	Card retCard = myHand[targ];
+	return retCard;
+}
+
+
 bool Player::cardInHand(Card c) const{
 	int size = myHand.size();
 	for(int i = 0; i < size; i++){
@@ -62,14 +70,14 @@ Card Player::removeCardFromHand(Card c){
 }
 
 
-string Player::showHand() const{
+void Player::showHand() const{
 	int size = myHand.size();
 	for(int i = 0; i < size; i++){
 		cout << myHand[i].toString() << "\n";
 	}
 }
 
-string Player::showBooks() const{
+void Player::showBooks() const{
 	int size = myBook.size();
 	for(int i = 0; i < size; i++){
 		cout << myBook[i].toString() << "\n";
@@ -93,14 +101,14 @@ bool Player::sameRankInHand(Card c) const{
 	return false;
 }
 
-Card Player:: chooseCardFromHand() const{
-    //srand(time(NULL))
-    
-    int size = getHandSize();
-    int targ = rand() % size;
-    
-    Card retCard = myHand[targ];
-    return retCard;
+Card Player::rankRemove(Card c){
+	int size = myHand.size();
+	for(int i = 0; i < size; i++){
+		if(myHand[i].getRank() == c.getRank()){
+			return myHand[i];
+		}
+	}
 }
+
 
 
