@@ -30,7 +30,6 @@ Deck::Deck(){
 }
 
 void Deck::shuffle(){
-	//srand(time(NULL));
 	int targ1;
 	int targ2;
 	Card temp;
