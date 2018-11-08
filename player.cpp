@@ -93,5 +93,14 @@ bool Player::sameRankInHand(Card c) const{
 	return false;
 }
 
+Card Player:: chooseCardFromHand() const{
+    //srand(time(NULL))
+    
+    int size = getHandSize();
+    int targ = rand() % size;
+    
+    Card retCard = myHand[targ];
+    return retCard;
+}
 
 
