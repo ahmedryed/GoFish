@@ -54,8 +54,8 @@ public:
     //Remove the card c from the hand and return it to the caller
     Card removeCardFromHand(Card c);
 
-    string showHand() const;
-    string showBooks() const;
+    void showHand() const;
+    void showBooks() const;
 
     int getHandSize() const;
     int getBookSize() const;
@@ -74,7 +74,8 @@ public:
     //e.g. will return true if the player has a 7d and the parameter is 7c
 
     bool sameRankInHand(Card c) const;
-
+    
+	Card rankRemove(Card c);
 
 private:
 
