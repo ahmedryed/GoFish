@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 
 #include "player.h"
 #include "card.h"
@@ -15,100 +16,99 @@ Player::Player(){
 
 
 void Player::addCard(Card c){
-	myHand.push_back(c);
+    myHand.push_back(c);
 }
 //Pushes both cards
 void Player::bookCards(Card c1, Card c2){
-	myBook.push_back(c1);
-	myBook.push_back(c2);
+    myBook.push_back(c1);
+    myBook.push_back(c2);
 }
 
 bool Player::checkHandForBook(Card &c1, Card &c2){
-	int size = myHand.size();
-	bool pair = false;
-	for(int i = 0; i < size; i ++){
-		for(int j = 0; j < size; j++){
-			if(myHand[i].getRank() == myHand[j].getRank() && i != j && pair == false){
-				pair = true;
-				c1 = myHand[i];
-				c2 = myHand[j];
-			}
-		}
-	}
-	return pair;
+    int size = myHand.size();
+    bool pair = false;
+    for(int i = 0; i < size; i ++){
+        for(int j = 0; j < size; j++){
+            if(myHand[i].getRank() == myHand[j].getRank() && i != j && pair == false){
+                pair = true;
+                c1 = myHand[i];
+                c2 = myHand[j];
+            }
+        }
+    }
+    return pair;
 }
-
-Card Player::chooseCardFromHand() const{
-	int size = myHand.size();
-	int targ = rand() % size;
-	Card retCard = myHand[targ];
-	return retCard;
-}
-
 
 bool Player::cardInHand(Card c) const{
-	int size = myHand.size();
-	for(int i = 0; i < size; i++){
-		if(myHand[i].sameSuitAs(c) == true && myHand[i].getRank() == c.getRank()){
-			return true;
-		}
-	}
-	return false;
+    int size = myHand.size();
+    for(int i = 0; i < size; i++){
+        if(myHand[i].sameSuitAs(c) == true && myHand[i].getRank() == c.getRank()){
+            return true;
+        }
+    }
+    return false;
 }
 
 Card Player::removeCardFromHand(Card c){
-	int size = myHand.size();
-	int eraser = 0;
-	for(int i = 0; i < size; i++){
-		if(myHand[i].sameSuitAs(c) == true && myHand[i].getRank() == c.getRank()){
-			eraser = i;
-		}
-	}
-	
-	myHand.erase(myHand.begin() + eraser);
-	return c;
+    int size = myHand.size();
+    int eraser = 0;
+    for(int i = 0; i < size; i++){
+        if(myHand[i].sameSuitAs(c) == true && myHand[i].getRank() == c.getRank()){
+            eraser = i;
+        }
+    }
+
+    myHand.erase(myHand.begin() + eraser);
+    return c;
 }
 
 
 void Player::showHand() const{
-	int size = myHand.size();
-	for(int i = 0; i < size; i++){
-		cout << myHand[i].toString() << "\n";
-	}
+    int size = myHand.size();
+    for(int i = 0; i < size; i++){
+        cout << myHand[i].toString() << "\n";
+    }
 }
 
 void Player::showBooks() const{
-	int size = myBook.size();
-	for(int i = 0; i < size; i++){
-		cout << myBook[i].toString() << "\n";
-	}
+    int size = myBook.size();
+    for(int i = 0; i < size; i++){
+        cout << myBook[i].toString() << "\n";
+    }
 }
 
 int Player::getHandSize() const{
-	return myHand.size();
+    return myHand.size();
 }
 int Player::getBookSize() const{
-	return myBook.size();
+    return myBook.size();
 }
 
 bool Player::sameRankInHand(Card c) const{
-	int size = myHand.size();
-	for(int i = 0; i < size; i++){
-		if(myHand[i].getRank() == c.getRank()){
-			return true;
-		}
-	}
-	return false;
+    int size = myHand.size();
+    for(int i = 0; i < size; i++){
+        if(myHand[i].getRank() == c.getRank()){
+            return true;
+        }
+    }
+    return false;
+}
+
+Card Player:: chooseCardFromHand() const{
+    //srand(time(NULL))
+
+    int size = getHandSize();
+    int targ = rand() % size;
+
+    Card retCard = myHand[targ];
+    return retCard;
 }
 
 Card Player::rankRemove(Card c){
-	int size = myHand.size();
-	for(int i = 0; i < size; i++){
-		if(myHand[i].getRank() == c.getRank()){
-			return myHand[i];
-		}
-	}
+    int size = myHand.size();
+    for(int i = 0; i < size; i++){
+        if(myHand[i].getRank() == c.getRank()){
+            return myHand[i];
+        }
+    }
 }
-
-
-
